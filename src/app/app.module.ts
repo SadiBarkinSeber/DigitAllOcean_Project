@@ -10,6 +10,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HomeComponent } from './component/home/home.component';
 
+import { FormsModule } from '@angular/forms';
+
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http, '/assets/translate/');
 }
@@ -22,6 +24,7 @@ export function HttpLoaderFactory(http: HttpClient){
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     TranslocoRootModule,

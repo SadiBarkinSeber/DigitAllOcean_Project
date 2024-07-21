@@ -1,27 +1,101 @@
 <div class="container">
-    <button class="btn btn-success mt-4 w-100">
+    <button class="btn btn-success mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <i class="fa fa-plus"></i>
-        Tayfa Ekle</button>
+        AddCrew</button>
 
     <hr>
 
-    <div class="row">
-        <div class="col-md-3 mt-3" *ngFor="let product of products">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <div class="image-container">
-                            <img src="https://www.enerjigazetesi.ist/wp-content/uploads/2019/01/petrol-sirketlerince-onlarca-petrol-gemisi-hurdaya-cikarildi.jpg" alt="Avatar" style="width:100%;height:300px;">
-                            <h2 class="overlay-text">Gemi Tayfası</h2>
-                        </div>
-                    </div>
-                    <div class="flip-card-back">
-                        <button class="btn btn-success mt-4 w-100">Gemi Tayfaları</button>
-                        <button class="btn btn-success mt-4 w-100">Detay</button>
-                        <button class="btn btn-success mt-4 w-100">Düzenle</button>
-                        <button class="btn btn-success mt-4 w-100">Sil</button>
-                    </div>
+    
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Crew</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mt-2">
+                    <label for="name">First Name :</label>
+                    <input type="text" id="name" class="form-control" [(ngModel)]="newPerson.name">
                 </div>
+
+                <div class="form-group mt-2">
+                    <label for="lastName">Last Name :</label>
+                    <input type="text" id="lastName" class="form-control" [(ngModel)]="newPerson.lastName">
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="nationality">Nationality :</label>
+                    <input type="text" id="nationality" class="form-control" [(ngModel)]="newPerson.nationality">
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="title">Title :</label>
+                    <input type="text" id="title" class="form-control" [(ngModel)]="newPerson.title">
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="certificates">Certificates :</label>
+                    <input type="text" id="certificates" class="form-control" [(ngModel)]="newPerson.certificates">
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="daysOnBoard">Days On Board :</label>
+                    <input type="number" id="daysOnBoard" class="form-control" [(ngModel)]="newPerson.daysOnBoard">
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="dailyRate">Daily Rate :</label>
+                    <input type="number" id="dailyRate" class="form-control" [(ngModel)]="newPerson.dailyRate">
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="currency">Currency  :</label>
+                    <input type="text" id="currency" class="form-control" [(ngModel)]="newPerson.currency">
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="totalIncome">Total Income  :</label>
+                    <input type="number" id="totalIncome" class="form-control" [(ngModel)]="newPerson.totalIncome">
+                </div>
+
+                <div class="form-group mt-2">
+                    <button class="btn btn-primary" (click)="addPerson()">Add Crew</button>
+                </div>
+
+                <table class="table mt-4" *ngIf="person.length > 0">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Nationality</th>
+                            <th>Title</th>
+                            <th>Certificates</th>
+                            <th>Days On Board</th>
+                            <th>Daily Rate</th>
+                            <th>Currency</th>
+                            <th>Total Income</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let member of person">
+                            <td>{{ member.name }}</td>
+                            <td>{{ member.lastName }}</td>
+                            <td>{{ member.nationality }}</td>
+                            <td>{{ member.title }}</td>
+                            <td>{{ member.certificates }}</td>
+                            <td>{{ member.daysOnBoard }}</td>
+                            <td>{{ member.dailyRate }}</td>
+                            <td>{{ member.currency }}</td>
+                            <td>{{ member.totalIncome }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="saveChanges()">Save changes</button>
             </div>
         </div>
     </div>
