@@ -1,0 +1,16 @@
+/* layouts.component.css */
+.navbar {
+    padding: 0.5rem 1rem;
+  }
+  
+  .dropdown-menu {
+    min-width: 200px; /* Menü genişliğini ayarlayın */
+  }
+  
+  .flag {
+    margin-right: 8px; /* Bayrak ile metin arasına boşluk ekleyin */
+  }
+  
+  .fa-check {
+    margin-left: 8px; /* Tik işareti ile metin arasına boşluk ekleyin */
+  }

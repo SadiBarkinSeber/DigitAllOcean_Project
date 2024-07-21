@@ -1,51 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonModel } from '../../models/person.models';
+import { PersonModel } from '../../models/person.models'; // Doğru yolu kontrol et
+import { PersonCardModel } from '../../models/personCard.model'; // Doğru yolu kontrol et
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'] // 'styleUrl' yerine 'styleUrls' olmalı
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  person: PersonModel[] = [];
-
-  newPerson: PersonModel = {
-    name: '',
-    lastName: '',
-    nationality: '',
-    title: '',
-    certificates: '',
-    daysOnBoard: 0,
-    dailyRate: 0,
-    currency: '',
-    totalIncome: 0
-  };
+  person: PersonCardModel[] = []; // PersonCardModel kullanıyoruz
+  newPerson: PersonModel = new PersonModel();
+  tempPerson: PersonModel[] = []; // Temporarily hold the persons added via Add Crew
 
   constructor() {}
 
   ngOnInit(): void {}
 
   addPerson() {
-    this.person.push({ ...this.newPerson });
+    this.tempPerson.push({ ...this.newPerson });
     this.resetForm();
   }
 
   saveChanges() {
-    // Bu noktada, person dizisini bir servise göndererek kalıcı olarak kaydedebilirsiniz.
-    console.log('Person List Saved:', this.person);
+    if (this.tempPerson.length > 0) {
+      const tableCard: PersonCardModel = {
+        title: 'New Crew List',
+        rows: this.tempPerson
+      };
+      this.person.push(tableCard); // PersonCardModel ile uyumlu
+      this.tempPerson = []; // Clear the temporary list after saving
+    }
   }
 
   resetForm() {
-    this.newPerson = {
-      name: '',
-      lastName: '',
-      nationality: '',
-      title: '',
-      certificates: '',
-      daysOnBoard: 0,
-      dailyRate: 0,
-      currency: '',
-      totalIncome: 0
-    };
+    this.newPerson = new PersonModel(); // Reset form
   }
 }
