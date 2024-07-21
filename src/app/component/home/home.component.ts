@@ -35,4 +35,14 @@ export class HomeComponent implements OnInit {
   resetForm() {
     this.newPerson = new PersonModel(); // Reset form
   }
+
+  deletePerson(cardIndex: number, rowIndex: number) {
+    const card = this.person[cardIndex];
+    card.rows.splice(rowIndex, 1); // Remove the person from the rows array
+
+    // If card.rows is empty, remove the entire card
+    if (card.rows.length === 0) {
+      this.person.splice(cardIndex, 1); // Remove the card
+    }
+  }
 }

@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./layouts.component.css']
 })
 export class LayoutsComponent {
+  
   // Mevcut dil ve dil seçenekleri
   public selectedLanguage: string = 'en'; // Varsayılan dil
   public languages: { code: string, name: string, flag: string }[] = [
@@ -18,4 +19,6 @@ export class LayoutsComponent {
   selectLanguage(languageCode: string): void {
     this.selectedLanguage = languageCode;
   }
+
+
 }

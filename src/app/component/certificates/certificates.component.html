@@ -1,0 +1,8 @@
+<div *ngIf="certificates.length > 0">
+    <ul>
+      <li *ngFor="let certificate of certificates">{{ certificate }}</li>
+    </ul>
+  </div>
+  <div *ngIf="certificates.length === 0">
+    <p>No certificates available.</p>
+  </div>
