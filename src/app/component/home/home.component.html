@@ -37,14 +37,16 @@
                   <td>{{ member.lastName }}</td>
                   <td>{{ member.nationality }}</td>
                   <td>{{ member.title }}</td>
-                  <td>{{ member.certificates }}</td>
+                  <td>{{ member.certificates.join(', ') }}</td>
                   <td>{{ member.daysOnBoard }}</td>
                   <td>{{ member.dailyRate }}</td>
                   <td>{{ member.currency }}</td>
                   <td>{{ member.totalIncome }}</td>
                   <td>
                     <div class="action-buttons">
-                      <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/crew', cardIndex]"><i class="far fa-eye"></i></button>
+                      <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/crew', cardIndex, rowIndex]">
+                        <i class="far fa-eye"></i>
+                      </button>                     
                       <button type="button" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
                       <button type="button" class="btn btn-danger btn-sm" (click)="deletePerson(cardIndex, rowIndex)"><i class="far fa-trash-alt"></i></button>
                     </div>

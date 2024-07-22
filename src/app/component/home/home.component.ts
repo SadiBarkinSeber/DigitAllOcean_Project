@@ -40,6 +40,8 @@ export class HomeComponent implements OnInit {
       // Verileri localStorage'a kaydet
       localStorage.setItem('persons', JSON.stringify(this.person));
     }
+    localStorage.setItem('persons', JSON.stringify(this.person));
+
   }
 
   resetForm() {
@@ -54,9 +56,10 @@ export class HomeComponent implements OnInit {
     if (card.rows.length === 0) {
       this.person.splice(cardIndex, 1); // Remove the card
     }
+    localStorage.setItem('persons', JSON.stringify(this.person));
   }
 
-  viewPersonDetails(cardIndex: number) {
-    this.router.navigate(['/crew', cardIndex]);
+  viewPersonDetails(cardIndex: number, rowIndex: number) {
+    this.router.navigate(['/crew', cardIndex, rowIndex]);
   }
 }

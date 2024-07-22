@@ -14,7 +14,7 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: "crew/:id",
+        path: "crew/:cardIndex/:rowIndex",
         component: CrewComponent
       }
     ]

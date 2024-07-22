@@ -14,18 +14,16 @@ export class CrewComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // Person ID'sini almak için route parametrelerini kullan
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      const personId = parseInt(id, 10);
+    this.route.paramMap.subscribe(params => {
+      const cardIndex = +params.get('cardIndex')!;
+      const rowIndex = +params.get('rowIndex')!;
       const storedPersons = localStorage.getItem('persons');
       if (storedPersons) {
         const persons: PersonCardModel[] = JSON.parse(storedPersons);
-        // İlgili kişiyi bul ve ata
-        if (persons[personId] && persons[personId].rows.length > 0) {
-          this.person = persons[personId].rows[0]; 
+        if (persons[cardIndex] && persons[cardIndex].rows[rowIndex]) {
+          this.person = persons[cardIndex].rows[rowIndex]; 
         }
       }
-    }
+    });
   }
 }
