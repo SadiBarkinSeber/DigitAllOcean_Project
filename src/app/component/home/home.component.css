@@ -71,3 +71,16 @@
   .action-buttons button {
     margin: 0; /* Ensure there's no additional margin */
   }
+
+  .modal-top .modal-dialog {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Modal aktif olduğunda yukarı doğru hareket eder */
+  .modal.show .modal-dialog {
+    transform: translateY(0);
+  }

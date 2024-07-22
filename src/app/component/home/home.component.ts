@@ -11,16 +11,28 @@ import { PersonCardModel } from '../../models/personCard.model'; // Doğru yolu 
 export class HomeComponent implements OnInit {
   person: PersonCardModel[] = []; // PersonCardModel kullanıyoruz
   newPerson: PersonModel = new PersonModel();
+  personCertificates: string[] = [];
   tempPerson: PersonModel[] = []; // Temporarily hold the persons added via Add Crew
-  availableCertificates: string[] = ['Cert1', 'Cert2', 'Cert3', 'Cert4', 'Cert5']; // Sertifikalar
+  availableCertificates: string[] = [
+    'International Load Line Certificate',
+    'International Tonnage Certificate',
+    'Onboard Experience Certificate',
+    'Security Awareness Certificate',
+    'First Aid Certificate'
+  ]; 
+  selectedPerson: PersonModel = new PersonModel(); // To hold the person whose certificates are to be viewed
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   onCertificatesChange(event: any) {
-    const selectedOptions = Array.from(event.target.selectedOptions, (option: any) => option.value);
-    this.newPerson.certificates = selectedOptions;
+    const selectedCert = event.target.value;
+    if (event.target.checked) {
+      this.newPerson.certificates.push(selectedCert);
+    } else {
+      this.newPerson.certificates = this.newPerson.certificates.filter(cert => cert !== selectedCert);
+    }
   }
 
   addPerson() {
@@ -34,32 +46,35 @@ export class HomeComponent implements OnInit {
         title: 'New Crew List',
         rows: this.tempPerson
       };
-      this.person.push(tableCard); // PersonCardModel ile uyumlu
-      this.tempPerson = []; // Clear the temporary list after saving
-  
-      // Verileri localStorage'a kaydet
+      this.person.push(tableCard);
+      this.tempPerson = [];
       localStorage.setItem('persons', JSON.stringify(this.person));
     }
-    localStorage.setItem('persons', JSON.stringify(this.person));
-
   }
 
   resetForm() {
-    this.newPerson = new PersonModel(); // Reset form
+    this.newPerson = new PersonModel();
   }
 
   deletePerson(cardIndex: number, rowIndex: number) {
     const card = this.person[cardIndex];
-    card.rows.splice(rowIndex, 1); // Remove the person from the rows array
+    card.rows.splice(rowIndex, 1);
 
-    // If card.rows is empty, remove the entire card
     if (card.rows.length === 0) {
-      this.person.splice(cardIndex, 1); // Remove the card
+      this.person.splice(cardIndex, 1);
     }
     localStorage.setItem('persons', JSON.stringify(this.person));
   }
 
   viewPersonDetails(cardIndex: number, rowIndex: number) {
     this.router.navigate(['/crew', cardIndex, rowIndex]);
+  }
+
+  viewCertificates(cardIndex: number, rowIndex: number) {
+    const selectedCard = this.person[cardIndex];
+    this.personCertificates = selectedCard.rows[rowIndex].certificates;
+  
+    // Modal'ı açmak için jQuery kullanarak
+    (window as any).$('#certificatesModal').modal('show');
   }
 }

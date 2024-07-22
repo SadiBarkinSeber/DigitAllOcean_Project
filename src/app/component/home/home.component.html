@@ -47,7 +47,9 @@
                       <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/crew', cardIndex, rowIndex]">
                         <i class="far fa-eye"></i>
                       </button>                     
-                      <button type="button" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
+                      <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#certificatesModal">
+                        <i class="fas fa-edit"></i>
+                    </button>
                       <button type="button" class="btn btn-danger btn-sm" (click)="deletePerson(cardIndex, rowIndex)"><i class="far fa-trash-alt"></i></button>
                     </div>
                   </td>
@@ -60,7 +62,31 @@
     </div>
   </div>
 
-  
+  <div class="modal fade" id="certificatesModal" tabindex="-1" aria-labelledby="certificatesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="certificatesModalLabel">Certificates</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Certificate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let certificate of personCertificates">
+                <td>{{ certificate }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 <!-- Modal for adding new person -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -94,10 +120,22 @@
                 <!-- Certificates selection -->
                 <div class="form-group mt-2">
                   <label for="certificates">Certificates :</label>
-                  <select id="certificates" class="form-control" multiple (change)="onCertificatesChange($event)">
-                      <option *ngFor="let cert of availableCertificates" [value]="cert">{{ cert }}</option>
-                  </select>
-              </div>
+                  <div id="certificates" class="form-check">
+                    <div *ngFor="let cert of availableCertificates">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        [value]="cert"
+                        [id]="cert"
+                        (change)="onCertificatesChange($event)"
+                        [checked]="newPerson.certificates.includes(cert)"
+                      >
+                      <label class="form-check-label" [for]="cert">
+                        {{ cert }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
 
                 <div class="form-group mt-2">
                     <label for="daysOnBoard">Days On Board :</label>

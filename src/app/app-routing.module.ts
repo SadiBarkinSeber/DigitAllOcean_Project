@@ -16,7 +16,7 @@ const routes: Routes = [
       {
         path: "crew/:cardIndex/:rowIndex",
         component: CrewComponent
-      }
+      },
     ]
   }
 ];
