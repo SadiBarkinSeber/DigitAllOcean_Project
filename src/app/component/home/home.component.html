@@ -44,7 +44,7 @@
                   <td>{{ member.totalIncome }}</td>
                   <td>
                     <div class="action-buttons">
-                      <button type="button" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></button>
+                      <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/crew', cardIndex]"><i class="far fa-eye"></i></button>
                       <button type="button" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
                       <button type="button" class="btn btn-danger btn-sm" (click)="deletePerson(cardIndex, rowIndex)"><i class="far fa-trash-alt"></i></button>
                     </div>
@@ -89,10 +89,13 @@
                     <input type="text" id="title" class="form-control" [(ngModel)]="newPerson.title">
                 </div>
 
+                <!-- Certificates selection -->
                 <div class="form-group mt-2">
-                    <label for="certificates">Certificates :</label>
-                    <input type="text" id="certificates" class="form-control" [(ngModel)]="newPerson.certificates">
-                </div>
+                  <label for="certificates">Certificates :</label>
+                  <select id="certificates" class="form-control" multiple (change)="onCertificatesChange($event)">
+                      <option *ngFor="let cert of availableCertificates" [value]="cert">{{ cert }}</option>
+                  </select>
+              </div>
 
                 <div class="form-group mt-2">
                     <label for="daysOnBoard">Days On Board :</label>

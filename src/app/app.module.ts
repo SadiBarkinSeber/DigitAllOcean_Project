@@ -8,6 +8,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HomeComponent } from './component/home/home.component';
 import { FormsModule } from '@angular/forms';
+import { CrewComponent } from './component/crew/crew.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/translate/');
@@ -17,7 +18,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     LayoutsComponent,
-    HomeComponent
+    HomeComponent,
+    CrewComponent
   ],
   imports: [
     BrowserModule,
