@@ -26,9 +26,13 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+    // Veriyi localStorage'dan oku
     const storedPersons = localStorage.getItem('persons');
     if (storedPersons) {
       this.person = JSON.parse(storedPersons);
+    } else {
+      // Eğer veri bulunmazsa, örnek veriler ekle
+      this.initializeSampleData();
     }
   }
 
@@ -87,5 +91,25 @@ export class HomeComponent implements OnInit {
   openModal(cardIndex: number, rowIndex: number): void {
     const selectedCard = this.person[cardIndex];
     this.selectedPerson = selectedCard.rows[rowIndex];
+  }
+
+  initializeSampleData() {
+    // Örnek verileri tanımla
+    const sampleData = [
+      { name: 'John', lastName: 'Doe', nationality: 'American', title: 'Captain', certificates: ['International Load Line Certificate', 'First Aid Certificate'], daysOnBoard: 30, dailyRate: 200, currency: 'USD', totalIncome: 6000 },
+      { name: 'Jane', lastName: 'Smith', nationality: 'British', title: 'Chief Engineer', certificates: ['International Tonnage Certificate', 'Onboard Experience Certificate'], daysOnBoard: 45, dailyRate: 250, currency: 'GBP', totalIncome: 11250 },
+      { name: 'Alice', lastName: 'Johnson', nationality: 'Canadian', title: 'Second Officer', certificates: ['Security Awareness Certificate'], daysOnBoard: 20, dailyRate: 180, currency: 'CAD', totalIncome: 3600 },
+      { name: 'Bob', lastName: 'Brown', nationality: 'Australian', title: 'Deckhand', certificates: ['First Aid Certificate', 'Onboard Experience Certificate'], daysOnBoard: 25, dailyRate: 150, currency: 'AUD', totalIncome: 3750 },
+      { name: 'Eve', lastName: 'Davis', nationality: 'New Zealander', title: 'Bosun', certificates: ['International Load Line Certificate'], daysOnBoard: 40, dailyRate: 220, currency: 'NZD', totalIncome: 8800 }
+    ];
+
+    // 5 adet örnek tablo oluştur
+    const sampleCards: PersonCardModel[] = sampleData.map((person, index) => ({
+      title: `Crew List ${index + 1}`,
+      rows: [person]
+    }));
+
+    this.person = sampleCards;
+    localStorage.setItem('persons', JSON.stringify(this.person));
   }
 }

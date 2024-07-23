@@ -9,12 +9,11 @@
 
    
    <!-- Card Grid for displaying persons -->
-<div class="row mt-4">
+   <div class="row mt-4">
     <div class="col-md-12 mb-4" *ngFor="let card of person; let cardIndex = index">
       <div class="card shadow-sm rounded">
         <div class="card-body">
           <h5 class="card-title mb-3">{{ card.title }}</h5>
-          <!-- Table within the card -->
           <div class="table-responsive">
             <table class="table table-striped table-bordered card-table">
               <thead class="thead-dark">
@@ -46,11 +45,13 @@
                     <div class="action-buttons">
                       <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/crew', cardIndex, rowIndex]">
                         <i class="far fa-eye"></i>
-                      </button>                     
+                      </button>
                       <button type="button" class="btn btn-success btn-sm" (click)="openModal(cardIndex, rowIndex)" data-bs-toggle="modal" data-bs-target="#certificatesModal">
                         <i class="fas fa-edit"></i>
                       </button>
-                      <button type="button" class="btn btn-danger btn-sm" (click)="deletePerson(cardIndex, rowIndex)"><i class="far fa-trash-alt"></i></button>
+                      <button type="button" class="btn btn-danger btn-sm" (click)="deletePerson(cardIndex, rowIndex)">
+                        <i class="far fa-trash-alt"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
