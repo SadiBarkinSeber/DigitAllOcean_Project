@@ -1,7 +1,12 @@
 {
-    "First Name":"First Name",
-    "Last Name":"Last Name",
-    "Nationality":"Nationality",
-    "Card Page":"Card Page",
-    "Edit Page":"Edit Page"
+  "person": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "nationality": "Nationality",
+    "title": "Title",
+    "daysOnBoard": "Days On Board",
+    "dailyRate": "Daily Rate",
+    "currency": "Currency",
+    "totalIncome": "Total Income"
   }
+}

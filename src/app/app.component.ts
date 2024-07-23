@@ -10,6 +10,6 @@ export class AppComponent {
   title= 'DigitAllOcean';
 
   constructor(private translate: TranslateService){
-    translate.setDefaultLang('tr');
+    translate.setDefaultLang('en');
   }
 }

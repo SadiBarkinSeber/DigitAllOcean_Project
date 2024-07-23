@@ -1,7 +1,12 @@
 {
-    "First Name" :"Primeironome",
-    "Last Name":"Sobrenome",
-    "Nationality":"Nacionalidade",
-    "Card Page":"Página do cartão",
-    "Edit Page":"Editar Página"
+  "person": {
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "nationality": "Nacionalidade",
+    "title": "Título",
+    "daysOnBoard": "Dias a bordo",
+    "dailyRate": "Taxa diária",
+    "currency": "Moeda",
+    "totalIncome": "Renda total"
   }
+}

@@ -106,98 +106,113 @@
             </div>
             <div class="modal-body">
                 <div class="form-group mt-2">
-                    <label for="name">First Name :</label>
-                    <input type="text" id="name" class="form-control" [(ngModel)]="newPerson.name">
-                </div>
-
-                <div class="form-group mt-2">
-                    <label for="lastName">Last Name :</label>
-                    <input type="text" id="lastName" class="form-control" [(ngModel)]="newPerson.lastName">
-                </div>
-
-                <div class="form-group mt-2">
-                    <label for="nationality">Nationality :</label>
-                    <input type="text" id="nationality" class="form-control" [(ngModel)]="newPerson.nationality">
-                </div>
-
-                <div class="form-group mt-2">
-                    <label for="title">Title :</label>
-                    <input type="text" id="title" class="form-control" [(ngModel)]="newPerson.title">
-                </div>
-
-                <!-- Certificates selection -->
-                <div class="form-group mt-2">
+                  <label for="name">First Name :</label>
+                  <input type="text" id="name" class="form-control" [(ngModel)]="newPerson.name">
+              </div>
+              
+              <div class="form-group mt-2">
+                  <label for="lastName">Last Name :</label>
+                  <input type="text" id="lastName" class="form-control" [(ngModel)]="newPerson.lastName">
+              </div>
+              
+              <div class="form-group mt-2">
+                  <label for="nationality">Nationality :</label>
+                  <input type="text" id="nationality" class="form-control" [(ngModel)]="newPerson.nationality">
+              </div>
+              
+              <div class="form-group mt-2">
+                  <label for="title">Title :</label>
+                  <input type="text" id="title" class="form-control" [(ngModel)]="newPerson.title">
+              </div>
+              
+              <!-- Certificates selection -->
+              <div class="form-group mt-2">
                   <label for="certificates">Certificates :</label>
                   <div id="certificates" class="form-check">
-                    <div *ngFor="let cert of availableCertificates">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        [value]="cert"
-                        [id]="cert"
-                        (change)="onCertificatesChange($event)"
-                        [checked]="newPerson.certificates.includes(cert)"
-                      >
-                      <label class="form-check-label" [for]="cert">
-                        {{ cert }}
-                      </label>
-                    </div>
+                      <div *ngFor="let cert of availableCertificates">
+                          <input
+                              class="form-check-input"
+                              type="checkbox"
+                              [value]="cert"
+                              [id]="cert"
+                              (change)="onCertificatesChange($event)"
+                              [checked]="newPerson.certificates.includes(cert)"
+                          >
+                          <label class="form-check-label" [for]="cert">
+                              {{ cert }}
+                          </label>
+                      </div>
                   </div>
-                </div>
-
-                <div class="form-group mt-2">
-                    <label for="daysOnBoard">Days On Board :</label>
-                    <input type="number" id="daysOnBoard" class="form-control" [(ngModel)]="newPerson.daysOnBoard">
-                </div>
-
-                <div class="form-group mt-2">
-                    <label for="dailyRate">Daily Rate :</label>
-                    <input type="number" id="dailyRate" class="form-control" [(ngModel)]="newPerson.dailyRate">
-                </div>
-
-                <div class="form-group mt-2">
-                    <label for="currency">Currency  :</label>
-                    <input type="text" id="currency" class="form-control" [(ngModel)]="newPerson.currency">
-                </div>
-
-                <div class="form-group mt-2">
-                    <label for="totalIncome">Total Income  :</label>
-                    <input type="number" id="totalIncome" class="form-control" [(ngModel)]="newPerson.totalIncome">
-                </div>
-
-                <div class="form-group mt-2">
-                    <button class="btn btn-primary" (click)="addPerson()">Add Crew</button>
-                </div>
-
-                <!-- Temporary Table to show added persons in the modal -->
-                <table class="table mt-4" *ngIf="tempPerson.length > 0">
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Nationality</th>
-                            <th>Title</th>
-                            <th>Certificates</th>
-                            <th>Days On Board</th>
-                            <th>Daily Rate</th>
-                            <th>Currency</th>
-                            <th>Total Income</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let member of tempPerson">
-                            <td>{{ member.name }}</td>
-                            <td>{{ member.lastName }}</td>
-                            <td>{{ member.nationality }}</td>
-                            <td>{{ member.title }}</td>
-                            <td>{{ member.certificates }}</td>
-                            <td>{{ member.daysOnBoard }}</td>
-                            <td>{{ member.dailyRate }}</td>
-                            <td>{{ member.currency }}</td>
-                            <td>{{ member.totalIncome }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+              </div>
+              
+              <div class="form-group mt-2">
+                  <label for="daysOnBoard">Days On Board :</label>
+                  <input
+                      type="number"
+                      id="daysOnBoard"
+                      class="form-control"
+                      [(ngModel)]="newPerson.daysOnBoard"
+                      (ngModelChange)="updateTotalIncome()"
+                  >
+              </div>
+              
+              <div class="form-group mt-2">
+                  <label for="dailyRate">Daily Rate :</label>
+                  <input
+                      type="number"
+                      id="dailyRate"
+                      class="form-control"
+                      [(ngModel)]="newPerson.dailyRate"
+                      (ngModelChange)="updateTotalIncome()"
+                  >
+              </div>
+              
+              <div class="form-group mt-2">
+                  <label for="currency">Currency:</label>
+                  <select id="currency" class="form-control" [(ngModel)]="newPerson.currency">
+                      <option value="USD">USD</option>
+                      <option value="EUR">EUR</option>
+                  </select>
+              </div>
+              
+              <div class="form-group mt-2">
+                  <label for="totalIncome">Total Income :</label>
+                  <input type="number" id="totalIncome" class="form-control" [value]="newPerson.totalIncome" disabled>
+              </div>
+              
+              <div class="form-group mt-2">
+                  <button class="btn btn-primary" (click)="addPerson()">Add Crew</button>
+              </div>
+              
+              <!-- Temporary Table to show added persons in the modal -->
+              <table class="table mt-4" *ngIf="tempPerson.length > 0">
+                  <thead>
+                      <tr>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>Nationality</th>
+                          <th>Title</th>
+                          <th>Certificates</th>
+                          <th>Days On Board</th>
+                          <th>Daily Rate</th>
+                          <th>Currency</th>
+                          <th>Total Income</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let member of tempPerson">
+                          <td>{{ member.name }}</td>
+                          <td>{{ member.lastName }}</td>
+                          <td>{{ member.nationality }}</td>
+                          <td>{{ member.title }}</td>
+                          <td>{{ member.certificates }}</td>
+                          <td>{{ member.daysOnBoard }}</td>
+                          <td>{{ member.dailyRate }}</td>
+                          <td>{{ member.currency }}</td>
+                          <td>{{ member.totalIncome }}</td>
+                      </tr>
+                  </tbody>
+              </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" (click)="saveChanges()">Save Changes</button>

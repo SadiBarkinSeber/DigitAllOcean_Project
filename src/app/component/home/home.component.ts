@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
     'First Aid Certificate'
   ]; 
   selectedPerson: PersonModel = new PersonModel(); // To hold the person whose certificates are to be viewed
-
   
   constructor(private router: Router) {}
 
@@ -102,14 +101,16 @@ export class HomeComponent implements OnInit {
       { name: 'Bob', lastName: 'Brown', nationality: 'Australian', title: 'Deckhand', certificates: ['First Aid Certificate', 'Onboard Experience Certificate'], daysOnBoard: 25, dailyRate: 150, currency: 'AUD', totalIncome: 3750 },
       { name: 'Eve', lastName: 'Davis', nationality: 'New Zealander', title: 'Bosun', certificates: ['International Load Line Certificate'], daysOnBoard: 40, dailyRate: 220, currency: 'NZD', totalIncome: 8800 }
     ];
-
-    // 5 adet örnek tablo oluştur
-    const sampleCards: PersonCardModel[] = sampleData.map((person, index) => ({
-      title: `Crew List ${index + 1}`,
-      rows: [person]
+    this.person = sampleData.map(data => ({
+      title: 'Sample Crew',
+      rows: [data]
     }));
-
-    this.person = sampleCards;
     localStorage.setItem('persons', JSON.stringify(this.person));
+  }
+
+  updateTotalIncome() {
+    const daysOnBoard = this.newPerson.daysOnBoard || 0;
+    const dailyRate = this.newPerson.dailyRate || 0;
+    this.newPerson.totalIncome = daysOnBoard * dailyRate;
   }
 }
