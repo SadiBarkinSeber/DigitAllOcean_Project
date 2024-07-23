@@ -22,9 +22,15 @@ export class HomeComponent implements OnInit {
   ]; 
   selectedPerson: PersonModel = new PersonModel(); // To hold the person whose certificates are to be viewed
 
+  
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const storedPersons = localStorage.getItem('persons');
+    if (storedPersons) {
+      this.person = JSON.parse(storedPersons);
+    }
+  }
 
   onCertificatesChange(event: any) {
     const selectedCert = event.target.value;
@@ -76,5 +82,10 @@ export class HomeComponent implements OnInit {
   
     // Modal'ı açmak için jQuery kullanarak
     (window as any).$('#certificatesModal').modal('show');
+  }
+  
+  openModal(cardIndex: number, rowIndex: number): void {
+    const selectedCard = this.person[cardIndex];
+    this.selectedPerson = selectedCard.rows[rowIndex];
   }
 }
