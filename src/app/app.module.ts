@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { CrewComponent } from './component/crew/crew.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, '/assets/translate/');
+  return new TranslateHttpLoader(http, './assets/translate/', '.json');
 }
 
 @NgModule({

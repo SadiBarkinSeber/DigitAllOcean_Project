@@ -7,6 +7,11 @@
   "DAYS_ON_BOARD": "Days On Board",
   "DAILY_RATE": "Daily Rate",
   "CURRENCY": "Currency",
+  "DISCOUNT": "Discount",
   "TOTAL_INCOME": "Total Income",
-  "ACTIONS": "Actions"
+  "ACTIONS": "Actions",
+  "ENTER_DISCOUNT": "Enter discount",
+  "VIEW": "View",
+  "EDIT": "Edit",
+  "DELETE": "Delete"
 }

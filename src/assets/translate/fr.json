@@ -1,0 +1,17 @@
+{
+  "FIRST_NAME": "Prénom",
+  "LAST_NAME": "Nom",
+  "NATIONALITY": "Nationalité",
+  "TITLE": "Titre",
+  "CERTIFICATES": "Certificats",
+  "DAYS_ON_BOARD": "Jours à bord",
+  "DAILY_RATE": "Taux journalier",
+  "CURRENCY": "Devise",
+  "DISCOUNT": "Réduction",
+  "TOTAL_INCOME": "Revenu total",
+  "ACTIONS": "Actions",
+  "ENTER_DISCOUNT": "Entrez la réduction",
+  "VIEW": "Voir",
+  "EDIT": "Éditer",
+  "DELETE": "Supprimer"
+}

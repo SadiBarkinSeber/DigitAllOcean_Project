@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
       this.person.push(tableCard);
       this.tempPerson = [];
       localStorage.setItem('persons', JSON.stringify(this.person));
+      
     }
   }
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-layouts',
@@ -6,19 +7,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./layouts.component.css']
 })
 export class LayoutsComponent {
-  
-  // Mevcut dil ve dil seçenekleri
-  public selectedLanguage: string = 'en'; // Varsayılan dil
-  public languages: { code: string, name: string, flag: string }[] = [
-    { code: 'en', name: 'English', flag: 'flag-united-kingdom' },
-    { code: 'fr', name: 'Français', flag: 'flag-france' },
-    { code: 'pt', name: 'Português', flag: 'flag-portugal' }
-  ];
 
-  // Dil seçimini değiştirme fonksiyonu
-  selectLanguage(languageCode: string): void {
-    this.selectedLanguage = languageCode;
+  constructor(private translate: TranslateService) {
+    this.translate.addLangs(['en', 'fr', 'pt']);
+    this.translate.setDefaultLang('en');
+
+    const browserLang = this.translate.getBrowserLang();
+    const supportedLangs = ['en', 'fr', 'pt'];
+    const defaultLang = 'en';
+
+    if (browserLang && supportedLangs.includes(browserLang)) {
+      this.translate.use(browserLang).subscribe({
+        error: () => this.translate.use(defaultLang)
+      });
+    } else {
+      this.translate.use(defaultLang);
+    }
   }
 
-
+  // Dil seçimini değiştirme fonksiyonu
+  switchLanguage(language: string) {
+    this.translate.use(language).subscribe({
+      error: () => console.error('Error switching language')
+    });
+  }
 }

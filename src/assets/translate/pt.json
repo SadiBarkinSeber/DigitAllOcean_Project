@@ -1,0 +1,17 @@
+{
+  "FIRST_NAME": "Nome",
+  "LAST_NAME": "Sobrenome",
+  "NATIONALITY": "Nacionalidade",
+  "TITLE": "Título",
+  "CERTIFICATES": "Certificados",
+  "DAYS_ON_BOARD": "Dias a bordo",
+  "DAILY_RATE": "Taxa diária",
+  "CURRENCY": "Moeda",
+  "DISCOUNT": "Desconto",
+  "TOTAL_INCOME": "Rendimento total",
+  "ACTIONS": "Ações",
+  "ENTER_DISCOUNT": "Insira o desconto",
+  "VIEW": "Visualizar",
+  "EDIT": "Editar",
+  "DELETE": "Excluir"
+}

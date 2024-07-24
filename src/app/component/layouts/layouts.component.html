@@ -7,39 +7,11 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- Other navbar items -->
-            </ul>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-language"></i>
-                        Language
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
-                        <li>
-                            <a class="dropdown-item" href="#" [class.active]="selectedLanguage === 'en'" (click)="selectLanguage('en')">
-                                <i class="flag-united-kingdom flag"></i> English
-                                <i *ngIf="selectedLanguage === 'en'" class="fa fa-check text-success ms-2"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" [class.active]="selectedLanguage === 'fr'" (click)="selectLanguage('fr')">
-                                <i class="flag-france flag"></i> Français
-                                <i *ngIf="selectedLanguage === 'fr'" class="fa fa-check text-success ms-2"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" [class.active]="selectedLanguage === 'pt'" (click)="selectLanguage('pt')">
-                                <i class="flag-portugal flag"></i> Português
-                                <i *ngIf="selectedLanguage === 'pt'" class="fa fa-check text-success ms-2"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        <div class="language-selector">
+            <button (click)="switchLanguage('en')">English</button>
+            <button (click)="switchLanguage('fr')">Français</button>
+            <button (click)="switchLanguage('pt')">Português</button>
+          </div>
     </div>
 </nav>
 

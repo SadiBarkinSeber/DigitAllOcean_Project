@@ -7,9 +7,11 @@ import { TranslateService } from '@ngx-translate/core';
   template: '<router-outlet></router-outlet>'
 })
 export class AppComponent {
-  title= 'DigitAllOcean';
-
-  constructor(private translate: TranslateService){
-    translate.setDefaultLang('en');
+  constructor(private translate: TranslateService) {
+    this.translate.setDefaultLang('en');
+  }
+  
+  switchLanguage(language: string) {
+    this.translate.use(language);
   }
 }
