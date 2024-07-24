@@ -8,4 +8,5 @@ export class PersonModel {
   dailyRate: number = 0;      
   currency: string = "";
   totalIncome: number = 0;    
+  discount: number = 0;
 }

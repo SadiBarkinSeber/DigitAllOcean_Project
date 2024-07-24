@@ -26,6 +26,7 @@
                   <th>Days On Board</th>
                   <th>Daily Rate</th>
                   <th>Currency</th>
+                  <th>Discount</th>
                   <th>Total Income</th>
                   <th>Actions</th>
                 </tr>
@@ -40,6 +41,15 @@
                   <td>{{ member.daysOnBoard }}</td>
                   <td>{{ member.dailyRate }}</td>
                   <td>{{ member.currency }}</td>
+                  <td>
+                    <input
+                    type="number"
+                    style="width: 80px; padding: 5px; font-size: 14px;"
+                    [(ngModel)]="member.discount"
+                    (ngModelChange)="updateDiscount(cardIndex, rowIndex, $event)"
+                    placeholder="Enter discount"
+                  />
+                  </td>
                   <td>{{ member.totalIncome }}</td>
                   <td>
                     <div class="action-buttons">
@@ -174,6 +184,11 @@
                       <option value="EUR">EUR</option>
                   </select>
               </div>
+
+              <div class="form-group">
+                  <label for="discount">Discount (%)</label>
+                  <input type="number" id="discount" [(ngModel)]="newPerson.discount" (input)="updateTotalIncome()" class="form-control" />
+              </div>
               
               <div class="form-group mt-2">
                   <label for="totalIncome">Total Income :</label>
@@ -196,6 +211,7 @@
                           <th>Days On Board</th>
                           <th>Daily Rate</th>
                           <th>Currency</th>
+                          <th>Discount</th>
                           <th>Total Income</th>
                       </tr>
                   </thead>
@@ -209,6 +225,7 @@
                           <td>{{ member.daysOnBoard }}</td>
                           <td>{{ member.dailyRate }}</td>
                           <td>{{ member.currency }}</td>
+                          
                           <td>{{ member.totalIncome }}</td>
                       </tr>
                   </tbody>

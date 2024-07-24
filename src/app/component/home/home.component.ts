@@ -25,12 +25,10 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Veriyi localStorage'dan oku
     const storedPersons = localStorage.getItem('persons');
     if (storedPersons) {
       this.person = JSON.parse(storedPersons);
     } else {
-      // Eğer veri bulunmazsa, örnek veriler ekle
       this.initializeSampleData();
     }
   }
@@ -95,11 +93,82 @@ export class HomeComponent implements OnInit {
   initializeSampleData() {
     // Örnek verileri tanımla
     const sampleData = [
-      { name: 'John', lastName: 'Doe', nationality: 'American', title: 'Captain', certificates: ['International Load Line Certificate', 'First Aid Certificate'], daysOnBoard: 30, dailyRate: 200, currency: 'USD', totalIncome: 6000 },
-      { name: 'Jane', lastName: 'Smith', nationality: 'British', title: 'Chief Engineer', certificates: ['International Tonnage Certificate', 'Onboard Experience Certificate'], daysOnBoard: 45, dailyRate: 250, currency: 'GBP', totalIncome: 11250 },
-      { name: 'Alice', lastName: 'Johnson', nationality: 'Canadian', title: 'Second Officer', certificates: ['Security Awareness Certificate'], daysOnBoard: 20, dailyRate: 180, currency: 'CAD', totalIncome: 3600 },
-      { name: 'Bob', lastName: 'Brown', nationality: 'Australian', title: 'Deckhand', certificates: ['First Aid Certificate', 'Onboard Experience Certificate'], daysOnBoard: 25, dailyRate: 150, currency: 'AUD', totalIncome: 3750 },
-      { name: 'Eve', lastName: 'Davis', nationality: 'New Zealander', title: 'Bosun', certificates: ['International Load Line Certificate'], daysOnBoard: 40, dailyRate: 220, currency: 'NZD', totalIncome: 8800 }
+      {
+        name: 'John',
+        lastName: 'Doe',
+        nationality: 'American',
+        title: 'Captain',
+        certificates: [
+          'International Load Line Certificate',
+          'International Tonnage Certificate',
+          'Onboard Experience Certificate',
+          'Security Awareness Certificate',
+          'First Aid Certificate'
+        ],
+        daysOnBoard: 30,
+        dailyRate: 200,
+        currency: 'USD',
+        totalIncome: 6000,
+        discount: 10 // Örnek indirim değeri
+      },
+      {
+        name: 'Jane',
+        lastName: 'Smith',
+        nationality: 'British',
+        title: 'Chief Engineer',
+        certificates: [
+          'International Tonnage Certificate',
+          'Onboard Experience Certificate'
+        ],
+        daysOnBoard: 45,
+        dailyRate: 250,
+        currency: 'USD',
+        totalIncome: 11250,
+        discount: 5 // Örnek indirim değeri
+      },
+      {
+        name: 'Alice',
+        lastName: 'Johnson',
+        nationality: 'Canadian',
+        title: 'Second Officer',
+        certificates: [
+          'Security Awareness Certificate'
+        ],
+        daysOnBoard: 20,
+        dailyRate: 180,
+        currency: 'USD',
+        totalIncome: 3600,
+        discount: 0 // Örnek indirim değeri
+      },
+      {
+        name: 'Bob',
+        lastName: 'Brown',
+        nationality: 'Australian',
+        title: 'Deckhand',
+        certificates: [
+          'First Aid Certificate',
+          'Onboard Experience Certificate'
+        ],
+        daysOnBoard: 25,
+        dailyRate: 150,
+        currency: 'EUR',
+        totalIncome: 3750,
+        discount: 15 // Örnek indirim değeri
+      },
+      {
+        name: 'Eve',
+        lastName: 'Davis',
+        nationality: 'New Zealander',
+        title: 'Bosun',
+        certificates: [
+          'International Load Line Certificate'
+        ],
+        daysOnBoard: 40,
+        dailyRate: 220,
+        currency: 'EUR',
+        totalIncome: 8800,
+        discount: 8 // Örnek indirim değeri
+      }
     ];
     this.person = sampleData.map(data => ({
       title: 'Sample Crew',
@@ -111,6 +180,24 @@ export class HomeComponent implements OnInit {
   updateTotalIncome() {
     const daysOnBoard = this.newPerson.daysOnBoard || 0;
     const dailyRate = this.newPerson.dailyRate || 0;
-    this.newPerson.totalIncome = daysOnBoard * dailyRate;
+    const discount = this.newPerson.discount || 0;
+
+    const initialIncome = daysOnBoard * dailyRate;
+    const discountAmount = (initialIncome * discount) / 100;
+    this.newPerson.totalIncome = initialIncome - discountAmount;
+  }
+
+  updateDiscount(cardIndex: number, rowIndex: number, newDiscount: number) {
+    const card = this.person[cardIndex];
+    const member = card.rows[rowIndex];
+
+    // Discount'u güncelle
+    member.discount = newDiscount;
+
+    // Total Income'u güncelle
+    member.totalIncome = (member.daysOnBoard * member.dailyRate) - ((member.daysOnBoard * member.dailyRate) * member.discount / 100);
+    
+    // Veriyi localStorage'a kaydet
+    localStorage.setItem('persons', JSON.stringify(this.person));
   }
 }
