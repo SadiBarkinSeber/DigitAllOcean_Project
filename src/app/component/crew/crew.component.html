@@ -1,19 +1,19 @@
 <div class="container mt-4">
     <div *ngIf="person">
-      <h2 class="mb-4">Crew Details</h2>
+      <h2 class="mb-4">{{ 'CREW_DETAIL' | translate }}</h2>
       <div class="table-responsive mb-4">
         <table class="table table-striped table-bordered">
           <thead>
             <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Nationality</th>
-              <th>Title</th>
-              <th>Days On Board</th>
-              <th>Daily Rate</th>
-              <th>Currency</th>
-              <th>Discount</th>
-              <th>Total Income</th>
+              <th>{{ 'FIRST_NAME' | translate }}</th>
+                  <th>{{ 'LAST_NAME' | translate }}</th>
+                  <th>{{ 'NATIONALITY' | translate }}</th>
+                  <th>{{ 'TITLE' | translate }}</th>
+                  <th>{{ 'DAYS_ON_BOARD' | translate }}</th>
+                  <th>{{ 'DAILY_RATE' | translate }}</th>
+                  <th>{{ 'CURRENCY' | translate }}</th>
+                  <th>{{ 'DISCOUNT' | translate }}</th>
+                  <th>{{ 'TOTAL_INCOME' | translate }}</th>
             </tr>
           </thead>
           <tbody>
@@ -32,12 +32,12 @@
         </table>
       </div>
       
-      <h3 class="mb-4">Certificates</h3>
+      <h3 class="mb-4">{{ 'CERTIFICATES' | translate }}</h3>
       <div class="table-responsive">
         <table class="table table-striped table-bordered">
           <thead>
             <tr>
-              <th>Certificate</th>
+              <th>{{ 'CERTIFICATES' | translate }}</th>
             </tr>
           </thead>
           <tbody>

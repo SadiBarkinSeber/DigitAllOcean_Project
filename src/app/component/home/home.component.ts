@@ -11,6 +11,10 @@ import { PersonCardModel } from '../../models/personCard.model'; // Doğru yolu 
 export class HomeComponent implements OnInit {
   person: PersonCardModel[] = []; // PersonCardModel kullanıyoruz
   newPerson: PersonModel = new PersonModel();
+  totalIncomeByCurrency: { [key: string]: number } = {
+    USD: 0,
+    EUR: 0
+  };
   personCertificates: string[] = [];
   tempPerson: PersonModel[] = []; // Temporarily hold the persons added via Add Crew
   availableCertificates: string[] = [
@@ -31,7 +35,27 @@ export class HomeComponent implements OnInit {
     } else {
       this.initializeSampleData();
     }
+    this.calculateTotalIncomeByCurrency();
   }
+
+  calculateTotalIncomeByCurrency() {
+    // Toplam gelirleri sıfırla
+    this.totalIncomeByCurrency = {
+      USD: 0,
+      EUR: 0
+    };
+  
+    // Her bir kart ve kişiyi döngüye al
+    for (const card of this.person) {
+      for (const member of card.rows) {
+        // Para birimine göre toplamı güncelle
+        if (this.totalIncomeByCurrency[member.currency] !== undefined) {
+          this.totalIncomeByCurrency[member.currency] += member.totalIncome;
+        }
+      }
+    }
+  }
+
 
   onCertificatesChange(event: any) {
     const selectedCert = event.target.value;
@@ -42,9 +66,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  
+
   addPerson() {
     this.tempPerson.push({ ...this.newPerson });
     this.resetForm();
+    this.calculateTotalIncomeByCurrency();
   }
 
   saveChanges() {
@@ -56,7 +83,7 @@ export class HomeComponent implements OnInit {
       this.person.push(tableCard);
       this.tempPerson = [];
       localStorage.setItem('persons', JSON.stringify(this.person));
-      
+      this.calculateTotalIncomeByCurrency();
     }
   }
 
@@ -72,6 +99,7 @@ export class HomeComponent implements OnInit {
       this.person.splice(cardIndex, 1);
     }
     localStorage.setItem('persons', JSON.stringify(this.person));
+    this.calculateTotalIncomeByCurrency();
   }
 
   viewPersonDetails(cardIndex: number, rowIndex: number) {
@@ -182,23 +210,40 @@ export class HomeComponent implements OnInit {
     const daysOnBoard = this.newPerson.daysOnBoard || 0;
     const dailyRate = this.newPerson.dailyRate || 0;
     const discount = this.newPerson.discount || 0;
-
+  
     const initialIncome = daysOnBoard * dailyRate;
     const discountAmount = (initialIncome * discount) / 100;
     this.newPerson.totalIncome = initialIncome - discountAmount;
   }
 
-  updateDiscount(cardIndex: number, rowIndex: number, newDiscount: number) {
+  updateDiscount(cardIndex: number, rowIndex: number, discount: number) {
     const card = this.person[cardIndex];
     const member = card.rows[rowIndex];
-
-    // Discount'u güncelle
-    member.discount = newDiscount;
-
-    // Total Income'u güncelle
-    member.totalIncome = (member.daysOnBoard * member.dailyRate) - ((member.daysOnBoard * member.dailyRate) * member.discount / 100);
     
-    // Veriyi localStorage'a kaydet
-    localStorage.setItem('persons', JSON.stringify(this.person));
+    // İndirim oranını güncelle
+    member.discount = discount;
+    
+    // Güncellenmiş total income hesapla
+    const daysOnBoard = member.daysOnBoard;
+    const dailyRate = member.dailyRate;
+    const totalIncomeBeforeDiscount = daysOnBoard * dailyRate;
+    member.totalIncome = totalIncomeBeforeDiscount - (totalIncomeBeforeDiscount * discount / 100);
+    
+    // Toplam gelirleri güncelle
+    this.calculateTotalIncomeByCurrency();
+  }
+
+  updateTotalIncomeByCurrency() {
+    // Reset totals
+    this.totalIncomeByCurrency = { USD: 0, EUR: 0 };
+
+    // Calculate total income by currency
+    this.person.forEach(card => {
+      card.rows.forEach(member => {
+        if (member.currency in this.totalIncomeByCurrency) {
+          this.totalIncomeByCurrency[member.currency] += member.totalIncome;
+        }
+      });
+    });
   }
 }

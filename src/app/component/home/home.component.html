@@ -2,7 +2,7 @@
 <div class="container">
     <button class="btn btn-success mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <i class="fa fa-plus"></i>
-        Add Crew
+        {{ 'ADD_CREW' | translate }}
     </button>
 
     <hr>
@@ -84,7 +84,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="certificatesModalLabel">Certificates</h5>
+        <h5 class="modal-title" id="certificatesModalLabel">{{ 'CERTIFICATES' | translate }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -93,7 +93,7 @@
             <table class="table table-striped table-bordered">
               <thead>
                 <tr>
-                  <th>Certificates of Ship Personnel</th>
+                  <th>{{ 'CERTIFICATES_OF_SHIP_PERSONNEL' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -122,28 +122,28 @@
             </div>
             <div class="modal-body">
                 <div class="form-group mt-2">
-                  <label for="name">First Name :</label>
+                  <label for="name">{{ 'FIRST_NAME' | translate }} :</label>
                   <input type="text" id="name" class="form-control" [(ngModel)]="newPerson.name">
               </div>
               
               <div class="form-group mt-2">
-                  <label for="lastName">Last Name :</label>
+                  <label for="lastName">{{ 'LAST_NAME' | translate }} :</label>
                   <input type="text" id="lastName" class="form-control" [(ngModel)]="newPerson.lastName">
               </div>
               
               <div class="form-group mt-2">
-                  <label for="nationality">Nationality :</label>
+                  <label for="nationality">{{ 'NATIONALITY' | translate }} :</label>
                   <input type="text" id="nationality" class="form-control" [(ngModel)]="newPerson.nationality">
               </div>
               
               <div class="form-group mt-2">
-                  <label for="title">Title :</label>
+                  <label for="title">{{ 'TITLE' | translate }} :</label>
                   <input type="text" id="title" class="form-control" [(ngModel)]="newPerson.title">
               </div>
               
               <!-- Certificates selection -->
               <div class="form-group mt-2">
-                  <label for="certificates">Certificates :</label>
+                  <label for="certificates">{{ 'CERTIFICATES' | translate }} :</label>
                   <div id="certificates" class="form-check">
                       <div *ngFor="let cert of availableCertificates">
                           <input
@@ -162,7 +162,7 @@
               </div>
               
               <div class="form-group mt-2">
-                  <label for="daysOnBoard">Days On Board :</label>
+                  <label for="daysOnBoard">{{ 'DAYS_ON_BOARD' | translate }} :</label>
                   <input
                       type="number"
                       id="daysOnBoard"
@@ -173,7 +173,7 @@
               </div>
               
               <div class="form-group mt-2">
-                  <label for="dailyRate">Daily Rate :</label>
+                  <label for="dailyRate">{{ 'DAILY_RATE' | translate }} :</label>
                   <input
                       type="number"
                       id="dailyRate"
@@ -184,7 +184,7 @@
               </div>
               
               <div class="form-group mt-2">
-                  <label for="currency">Currency:</label>
+                  <label for="currency">{{ 'CURRENCY' | translate }} :</label>
                   <select id="currency" class="form-control" [(ngModel)]="newPerson.currency">
                       <option value="USD">USD</option>
                       <option value="EUR">EUR</option>
@@ -192,17 +192,17 @@
               </div>
 
               <div class="form-group">
-                  <label for="discount">Discount (%)</label>
+                  <label for="discount">{{ 'DISCOUNT' | translate }} (%)</label>
                   <input type="number" id="discount" [(ngModel)]="newPerson.discount" (input)="updateTotalIncome()" class="form-control" />
               </div>
               
               <div class="form-group mt-2">
-                  <label for="totalIncome">Total Income :</label>
+                  <label for="totalIncome">{{ 'TOTAL_INCOME' | translate }} :</label>
                   <input type="number" id="totalIncome" class="form-control" [value]="newPerson.totalIncome" disabled>
               </div>
               
               <div class="form-group mt-2">
-                  <button class="btn btn-primary" (click)="addPerson()">Add Person</button>
+                  <button class="btn btn-primary" (click)="addPerson()">{{ 'ADD_CREW' | translate }}</button>
               </div>
               
               <!-- Temporary Table to show added persons in the modal -->
@@ -210,15 +210,16 @@
                   <thead>
                       <tr>
                         <th mat-header-cell *matHeaderCellDef>{{ "FIRST_NAME" | translate }}</th>
-                          <th>Last Name</th>
-                          <th>Nationality</th>
-                          <th>Title</th>
-                          <th>Certificates</th>
-                          <th>Days On Board</th>
-                          <th>Daily Rate</th>
-                          <th>Currency</th>
-                          <th>Discount</th>
-                          <th>Total Income</th>
+                        <th>{{ 'FIRST_NAME' | translate }}</th>
+                        <th>{{ 'LAST_NAME' | translate }}</th>
+                        <th>{{ 'NATIONALITY' | translate }}</th>
+                        <th>{{ 'TITLE' | translate }}</th>
+                        <th>{{ 'CERTIFICATES' | translate }}</th>
+                        <th>{{ 'DAYS_ON_BOARD' | translate }}</th>
+                        <th>{{ 'DAILY_RATE' | translate }}</th>
+                        <th>{{ 'CURRENCY' | translate }}</th>
+                        <th>{{ 'DISCOUNT' | translate }}</th>
+                        <th>{{ 'TOTAL_INCOME' | translate }}</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -231,15 +232,29 @@
                           <td>{{ member.daysOnBoard }}</td>
                           <td>{{ member.dailyRate }}</td>
                           <td>{{ member.currency }}</td>
-                          
+                          <th>{{ member.discount }}</th>
                           <td>{{ member.totalIncome }}</td>
                       </tr>
                   </tbody>
               </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="saveChanges()">Save Changes</button>
+                <button type="button" class="btn btn-primary" (click)="saveChanges()">{{ 'SAVE_CHANGES' | translate }}</button>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Divs to show total income by currency -->
+<div class="container mt-4">
+  <h4>{{ 'TOTAL_INCOME_BY_CURRENCY' | translate }}</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <h5>{{ 'USD' | translate }}: {{ totalIncomeByCurrency['USD'] | number: '1.2-2' }}</h5>
+    </div>
+    <div class="col-md-6">
+      <h5>{{ 'EUR' | translate }}: {{ totalIncomeByCurrency['EUR'] | number: '1.2-2' }}</h5>
+    </div>
+  </div>
+</div>
+<br>

@@ -13,5 +13,12 @@
   "ENTER_DISCOUNT": "Insira o desconto",
   "VIEW": "Visualizar",
   "EDIT": "Editar",
-  "DELETE": "Excluir"
+  "DELETE": "Excluir",
+  "CREW_DETAIL": "Detalhe da tripulação",
+  "ADD_CREW": "Adicionar tripulação",
+  "SAVE_CHANGES": "Salvar Alterações",
+  "USD": "USD",
+  "EUR": "EUR",
+  "CERTIFICATES_OF_SHIP_PERSONNEL": "Certificados do Pessoal de Navio",
+  "TOTAL_INCOME_BY_CURRENCY": "Rendimento Total por Moeda"
 }

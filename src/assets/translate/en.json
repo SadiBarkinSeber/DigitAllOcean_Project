@@ -13,5 +13,14 @@
   "ENTER_DISCOUNT": "Enter discount",
   "VIEW": "View",
   "EDIT": "Edit",
-  "DELETE": "Delete"
+  "DELETE": "Delete",
+  "CREW_DETAIL": "Crew Detail",
+  "ADD_CREW": "Add Crew",
+  "SAVE_CHANGES": "Save Changes",
+  "USD": "USD",
+  "EUR": "EUR",
+  "CERTIFICATES_OF_SHIP_PERSONNEL": "Certificates of Ship Personnel",
+  "TOTAL_INCOME_BY_CURRENCY": "Total Income by Currency"
+  
+  
 }

@@ -7,11 +7,22 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="language-selector">
-            <button (click)="switchLanguage('en')">English</button>
-            <button (click)="switchLanguage('fr')">Français</button>
-            <button (click)="switchLanguage('pt')">Português</button>
-          </div>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Dil Seçici Buton -->
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ 'LANGUAGE' | translate }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" (click)="switchLanguage('en')">English</a></li>
+                        <li><a class="dropdown-item" (click)="switchLanguage('fr')">Français</a></li>
+                        <li><a class="dropdown-item" (click)="switchLanguage('pt')">Português</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
 
